@@ -1,5 +1,5 @@
 defmodule DataMapper.Actions.EntityManager do
-    alias DataMapper.Actions.Assembler
+    alias DataMapper.Actions.{Assembler, Data}
 
     def find(table, params \\ %{}) do
         {:ok, pid} = Data.start_link
