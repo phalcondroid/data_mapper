@@ -1,6 +1,4 @@
 defmodule DataMapper do
-  alias ExAws.Dynamo
-  alias DataMapper.Actions.{Assembler}
 
   '''
   def start(_type, _args) do
