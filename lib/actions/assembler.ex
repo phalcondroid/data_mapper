@@ -1,12 +1,11 @@
 defmodule DataMapper.Actions.Assembler do
     alias DataMapper.Actions.{Query, Meta, Utils, Data}
     
-    def assemble_query(table_name, params) do
+    def assemble_query(pid, table_name, params) do
 
         primary_key = Utils.get_primary_key(
             Meta.get_primary_key(table_name)
         )
-        {:ok, pid} = Data.start_link
         exist_pk = Map.get(params, primary_key)
 
         if exist_pk != nil do
@@ -45,7 +44,7 @@ defmodule DataMapper.Actions.Assembler do
                 end)
             end)
         end
-        Query.get(pid, table_name)
+        Query
     end
 
     def scan() do

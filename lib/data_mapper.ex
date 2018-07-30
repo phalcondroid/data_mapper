@@ -20,13 +20,5 @@ defmodule DataMapper do
     Task.start(fn -> :timer.sleep(1000); IO.puts("done sleeping") end)
   end
   '''
-
-  def query(table, params) do
-    Assembler.assemble_query(table, params)
-  end
-
-  def data_mapper() do
-    EntityManager
-  end
 end
 
