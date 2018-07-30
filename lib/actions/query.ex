@@ -1,4 +1,5 @@
 defmodule DataMapper.Actions.Query do
+    alias ExAws.Dynamo
     alias DataMapper.Actions.{Data}
     @attr_expr "_expression"
     @table_prefix "wwd_dev_"
@@ -13,6 +14,10 @@ defmodule DataMapper.Actions.Query do
     def has_key_condition(pid) do
         Data.has_key(pid, :key_condition_expression)
     end
+
+    def add_index(pid, index) do
+        Data.add(pid, :index_name, index)
+    end
     
     def add_filter(pid, field, value, comparison \\ "=", operator \\ "and") do
         with_expr = field <> @attr_expr
@@ -21,7 +26,7 @@ defmodule DataMapper.Actions.Query do
             Data.add(pid, :filter_expression, "#" <> field <> " #{comparison} :" <> field <> @attr_expr)
         else
             old_filter = Data.get(pid, :filter_expression)
-            new_filter = old_filter <> " operator " <> "#" <> field <> " = :" <> field <> @attr_expr
+            new_filter = old_filter <> " #{operator} " <> "#" <> field <> " = :" <> field <> @attr_expr
             Data.update(pid, :filter_expression, new_filter)
         end
     

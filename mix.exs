@@ -14,7 +14,7 @@ defmodule DataMapper.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: { DataMapper, [] },
+      #mod: { DataMapper, [] },
       extra_applications: [
         :logger,
         :ex_aws,
