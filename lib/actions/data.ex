@@ -2,7 +2,8 @@ defmodule DataMapper.Actions.Data do
     use Agent, restart: :transient
 
     def start_link() do
-        Agent.start_link(fn -> %{} end, name: __MODULE__)
+        random = Integer.to_string(DateTime.utc_now() |> DateTime.to_unix())
+        Agent.start_link(fn -> %{} end, name: "datamapper_start_link" <> random)
     end
 
     def add(pid, key, value) do

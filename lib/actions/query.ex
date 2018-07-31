@@ -15,8 +15,10 @@ defmodule DataMapper.Actions.Query do
         Data.has_key(pid, :key_condition_expression)
     end
 
-    def add_index(pid, index) do
-        Data.add(pid, :index_name, index)
+    def add_index(pid, table_name, field, index) do
+        field_san = String.replace(field, ~r/[^A-Za-z\-]/, "")
+        index_name = String.downcase(table_name <> "_" <> field_san)
+        Data.add(pid, :index_name, index_name <> "_index")
     end
     
     def add_filter(pid, field, value, comparison \\ "=", operator \\ "and") do

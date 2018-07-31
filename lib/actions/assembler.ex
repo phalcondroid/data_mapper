@@ -28,7 +28,7 @@ defmodule DataMapper.Actions.Assembler do
                     if !Query.has_key_condition(pid) do
                         if attr == Atom.to_string(key) do
                             Query.add_key_condition(pid, Atom.to_string(key), value)
-                            Query.add_index(pid, index)
+                            Query.add_index(pid, table_name, Atom.to_string(key), index)
                             new_params = Map.delete(params, key)
                             Enum.each(new_params, fn {key, value} ->
                                 if Query.has_key_condition(pid) do
