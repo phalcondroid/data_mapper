@@ -29,6 +29,7 @@ use Mix.Config
 #
 #     import_config "#{Mix.env}.exs"
 
+'''
 config :ex_aws, :dynamodb,
     scheme: "http://",
     host: "localhost",
@@ -36,3 +37,4 @@ config :ex_aws, :dynamodb,
     region: "us-east-1",
     access_key_id: "",
     secret_access_key: ""
+'''

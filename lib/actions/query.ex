@@ -2,7 +2,7 @@ defmodule DataMapper.Actions.Query do
     alias ExAws.Dynamo
     alias DataMapper.Actions.{Data}
     @attr_expr "_expression"
-    @table_prefix "wwd_dev_"
+    @table_prefix Application.get_env(:ex_aws, :dynamodb)[:db_prefix]
 
     def add_key_condition(pid, field, value, pk \\ false) do
         with_expr = field <> @attr_expr
