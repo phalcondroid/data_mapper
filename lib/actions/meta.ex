@@ -1,7 +1,7 @@
 defmodule DataMapper.Actions.Meta do
     alias ExAws.Dynamo
     require Logger
-    @table_prefix "wwd_dev_"
+    @table_prefix ""
 
     def get_description(table_name) do
         table_description = Dynamo.describe_table(
